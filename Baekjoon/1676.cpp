@@ -6,29 +6,33 @@ int main() {
     int N;
     cin >> N;
 
-    int count = 0;
-    bool isZero = 0;
-
+    int count2 = 0;
+    int count5 = 0;
+    
     for (int i=N; i > 0; i--) {
-        string num = to_string(i);
-        for (int j=0; j < num.size(); j++) {
-            count ++;
-            if (num[j]=='0') {
-                isZero = 1;
-                break;
+        int k = i;
+        for(int j=2; j*j <= k; j++) {
+            while(k%j==0) {
+                if (j==2) {
+                    count2++;
+                }
+                if (j==5) {
+                    count5++;
+                }
+                k /= j;
+            }
+            if (k==2) {
+                count2++;
+            }
+            if (k==5) {
+                count5++;
             }
         }
-        if (isZero==1) {
-            break;
-        }
     }
-    if (isZero==0) {
-        count = 0;
+    if (count2 > count5) {
+        cout << count5 << endl;
     }
-    if (N==0) {
-        count = 1;
+    else {
+        cout << count2 << endl;
     }
-
-    
-    cout << count << endl;
 }
