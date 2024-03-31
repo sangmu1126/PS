@@ -42,6 +42,6 @@ int main() {
     }
     sort(word.begin(), word.end(), comp);
     for (auto s: word) {
-        cout << s.first << endl;
+        cout << s.first << '\n';
     }
 }
