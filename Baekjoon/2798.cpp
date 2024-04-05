@@ -1,33 +1,27 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
-    int N, M;
-    cin >> N >> M;
+    int n, m, k;
+    vector <int> ar;
+    vector <int> sum;
+    cin >> n >> m;
 
-    vector<int> cards;
-    for (int i=0; i<N; i++) {
-        int k;
+    for (int i{0}; i < n; i++) {
         cin >> k;
 
-        cards.push_back(k);
+        ar.push_back(k);
     }
 
-    int max = 0;
-    int sum;
-
-    for (int a=0; a < N; a++) {
-        for (int b=1; b < N; b++) {
-            for (int c=2; c<N; c++) {
-                sum = cards[a] + cards[b] + cards[c];
-                if (a!=b && b!=c && c!=a) {
-                    if (max < sum && sum <= M) {
-                        max = sum;
-                    }
-                }
-            }
+    for (int i{0}; i < ar.size(); i++) {
+        for (int j{1}; j < ar.size(); j++) {
+            sum.push_back(ar[i]+ar[j]);
         }
     }
-    cout << max << endl;
+
+    sort(sum.begin(), sum.end());
+
+    
 }
