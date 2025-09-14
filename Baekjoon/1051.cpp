@@ -10,8 +10,6 @@ int main() {
     cin >> N >> M;
 
     array<vector<pair<int, int>>,10> nums;
-    vector<vector<int>> dx;
-    vector<vector<int>> dy;
 
     for (int i=0; i < N; i++) {
         string s;
@@ -32,24 +30,37 @@ int main() {
         cout << endl;
     }
 
-    int x;
-
     for (int i=0; i < 10; i++) {
         for (int j=0; j < nums[i].size(); j++) {
             if (nums[i].size() > 1 && (nums[i][nums[i].size()-1].first - nums[i][0].first == nums[i][nums[i].size()-1].second - nums[i][0].second)) {
-                x = i;
                 cout << i << ": ";
                 cout << "(" << nums[i][j].first << ","<< nums[i][j].second << ")";
-                ans = pow(nums[i][nums[i].size()-1].first - nums[i][0].first + 1,2);
             }
         }
     }
 
-    for (int i=0; i < x; i++) {
-        for (int j=i; j < x; j++) {
-            dx[i][j] = nums[x][j].first - nums[x][i].first;
-            dy[i][j] = nums[x][j].second - nums[x][i].second;
+    for (int a=0; a < 10; a++) {
+        int x = nums[a].size();
+        for (int i=0; i < x; i++) {
+            for (int j=i+1; j < x; j++) {
+                int dx = nums[a][j].first - nums[a][i].first;
+                int dy = nums[a][j].second - nums[a][i].second;
+                if (dx==dy) {
+                    cout << a << ": ";
+                    cout << "(" << nums[a][i].first << ","<< nums[a][i].second << ")" << endl;
+                    cout << "(" << nums[a][j].first << ","<< nums[a][j].second << ")" << endl;
+                }
+            }
         }
     }
+    // for (int i=0; i < x; i++) {
+    //     for (int j=i; j < x; j++) {
+    //         int dx = nums[x][j].first - nums[x][i].first;
+    //         int dy = nums[x][j].second - nums[x][i].second;
+    //         if (dx==dy && nums[x][0].first==x) {
+    //             ans = pow(nums[i][nums[i].size()-1].first - nums[i][0].first + 1,2);
+    //         }
+    //     }
+    // }
     cout << ans;
 }
